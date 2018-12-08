@@ -34,6 +34,3 @@ def load_images(max_num_load, h_dim, w_dim):
 #imgs=load_images(1000,500,500)
 #plt.imshow(imgs[3])
 #plt.savefig('image.png')
-
-
-print(imgs.shape)
