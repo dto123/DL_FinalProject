@@ -22,7 +22,7 @@ dtype = torch.cuda.FloatTensor
 
 height, width = 30, 30
 
-X_train = torch.from_numpy(load_images(1000,height,width)).float()
+X_train = torch.from_numpy(load_images(5000,height,width)).float()
 #X_train = X_train.cuda()
 
 print('Done loading')
@@ -47,7 +47,7 @@ model.cuda()
 # define optimizer
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay = 0.9)
 accuracies = []
-epochs=5000
+epochs=100000
 loss_fn = nn.MSELoss()
 
 print('Start training')
