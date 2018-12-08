@@ -47,7 +47,7 @@ model.cuda()
 # define optimizer
 optimizer = optim.SGD(model.parameters(), lr=learning_rate)
 accuracies = []
-epochs=1000
+epochs=2000
 loss_fn = nn.MSELoss()
 
 print('Start training')
