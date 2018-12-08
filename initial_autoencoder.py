@@ -67,7 +67,7 @@ for e in range(epochs):
         reconstructed = model(batch_x.cuda())
         print(type(reconstructed))
         model = model.cuda()
-        loss = loss_fn(reconstructed, batch_x)
+        loss = loss_fn(reconstructed, batch_x.cuda())
         #print(loss)
         print('epoch: ', e, 'step: ', step, 'loss: ', loss)
         optimizer.zero_grad()
