@@ -20,7 +20,7 @@ from load_images import load_images
 
 dtype = torch.cuda.FloatTensor
 
-height, width = 100, 100
+height, width = 10, 10
 
 X_train = torch.from_numpy(load_images(100,height,width)).float()
 #X_train = X_train.cuda()
@@ -76,8 +76,10 @@ for e in range(epochs):
         loss.backward()
         optimizer.step()
 
+
+print(type(reconstructed[4]))
 plt.imshow(reconstructed[4])
-plt.savefig('image_4_100by100.png')
+plt.savefig('image_4_10by10.png')
 
 
 
