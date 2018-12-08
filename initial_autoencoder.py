@@ -20,9 +20,9 @@ from load_images import load_images
 
 dtype = torch.cuda.FloatTensor
 
-height, width = 10, 10
+height, width = 100, 100
 
-X_train = torch.from_numpy(load_images(100,height,width)).float()
+X_train = torch.from_numpy(load_images(1000,height,width)).float()
 #X_train = X_train.cuda()
 print(X_train.size())
 
@@ -48,7 +48,7 @@ model.cuda()
 # define optimizer
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay = 0.9)
 accuracies = []
-epochs=100
+epochs=1000
 loss_fn = nn.MSELoss()
 
 print('Start training')
@@ -82,7 +82,7 @@ final_4 = final[4].reshape(height, width,3)
 print(type(final_4))
 print(final_4.shape)
 plt.imshow(final_4)
-plt.savefig('image_4_10by10.png')
+plt.savefig('image_4_100by100.png')
 
 
 
