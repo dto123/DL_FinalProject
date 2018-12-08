@@ -76,13 +76,13 @@ for e in range(epochs):
         loss.backward()
         optimizer.step()
 
-final = reconstructed.data.cpu()
-print(type(final))
+final = reconstructed.data.cpu().numpy()
+final_4 = final[4].reshape(height, width,3)
+print(type(final_4))
 print(final.size())
+print(final_4.shape)
 #plt.imshow(final[4])
-print(type(final[4]))
-print(final[4].size())
-plt.savefig(final[4], 'image_4_10by10.png')
+plt.savefig(final_4, 'image_4_10by10.png')
 
 
 
