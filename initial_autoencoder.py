@@ -20,9 +20,9 @@ from load_images import load_images
 
 dtype = torch.cuda.FloatTensor
 
-height, width = 100,100
+height, width = 30, 30
 
-X_train = torch.from_numpy(load_images(50,height,width)).float()
+X_train = torch.from_numpy(load_images(1000,height,width)).float()
 #X_train = X_train.cuda()
 
 print('Done loading')
@@ -75,6 +75,11 @@ for e in range(epochs):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+
+#plt.imshow(imgs[3])
+#plt.savefig('image.png')
+
+
 
 
 
