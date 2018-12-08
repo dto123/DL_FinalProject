@@ -95,4 +95,4 @@ def check_image(model, X, ind, height, width):
     plt.savefig('image_4_10by10.png')
     #plt2.imshow(orig_img)
 
-check_image(model, X, 4, height, width)
+check_image(model, X_train, 4, height, width)
