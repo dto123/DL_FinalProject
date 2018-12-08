@@ -20,12 +20,12 @@ from load_images import load_images
 
 dtype = torch.cuda.FloatTensor
 
-height, width = 500,500
+height, width = 100,100
 
-X_train = torch.from_numpy(load_images(200,height,width)).float()
+X_train = torch.from_numpy(load_images(50,height,width)).float()
 #X_train = X_train.cuda()
 
-print()
+print('Done loading')
 
 train_loader = Data.DataLoader(dataset = X_train, batch_size = 64, shuffle = True)
 ###################################################################
@@ -49,6 +49,8 @@ optimizer = optim.SGD(model.parameters(), lr=learning_rate)
 accuracies = []
 epochs=1000
 loss_fn = nn.MSELoss()
+
+print('Start training')
 
 for e in range(epochs):
 
