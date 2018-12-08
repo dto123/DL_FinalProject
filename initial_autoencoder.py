@@ -42,6 +42,8 @@ model = nn.Sequential(
     nn.Linear(int(in_size/reduction), in_size)
 )
 
+model.cuda()
+
 # define optimizer
 optimizer = optim.SGD(model.parameters(), lr=learning_rate)
 accuracies = []
