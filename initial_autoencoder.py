@@ -82,7 +82,7 @@ for e in range(epochs):
 #plt.savefig('image_4_10by10.png')
 
 
-check_image(model, X, 4, height, width)
+
 
 
    # print('epoch: ', e, 'step: ', step, 'loss: ', loss)
@@ -94,3 +94,5 @@ def check_image(model, X, ind, height, width):
     plt.imshow(img)
     plt.savefig('image_4_10by10.png')
     #plt2.imshow(orig_img)
+
+check_image(model, X, 4, height, width)
