@@ -76,7 +76,7 @@ for e in range(epochs):
         loss.backward()
         optimizer.step()
 
-final = reconstructed.data
+final = reconstructed.data.cpu()
 print(type(final))
 plt.imshow(final[4])
 print(type(final[4]))
