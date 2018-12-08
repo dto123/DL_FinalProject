@@ -76,10 +76,11 @@ for e in range(epochs):
         loss.backward()
         optimizer.step()
 
-
-#print(type(,reconstructed[4]).float())
-#plt.imshow(reconstructed[4].float())
-#plt.savefig('image_4_10by10.png')
+final = reconstructed.numpy()
+print(type(final))
+plt.imshow(final[4])
+print(type(final[4]))
+plt.savefig('image_4_10by10.png')
 
 
 
@@ -95,4 +96,4 @@ def check_image(model, X, ind, height, width):
     plt.savefig('image_4_10by10.png')
     #plt2.imshow(orig_img)
 
-check_image(model, X_train, 4, height, width)
+#check_image(model, X_train, 4, height, width)
