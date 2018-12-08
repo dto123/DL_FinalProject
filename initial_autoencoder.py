@@ -78,7 +78,7 @@ for e in range(epochs):
 
 
 print(type(reconstructed[4]))
-plt.imshow(reconstructed[4])
+plt.imshow(reconstructed[4].float())
 plt.savefig('image_4_10by10.png')
 
 
