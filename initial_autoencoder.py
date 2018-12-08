@@ -37,7 +37,7 @@ reduction=1
 
 model = nn.Sequential(
     nn.Linear(in_size,int(in_size/reduction)),
-    nn.ReLU(True),
+    #nn.ReLU(True),
     # coded is here
     nn.Linear(int(in_size/reduction), in_size)
 )
@@ -45,7 +45,7 @@ model = nn.Sequential(
 model.cuda()
 
 # define optimizer
-optimizer = optim.SGD(model.parameters(), lr=learning_rate)
+optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay = 0.9)
 accuracies = []
 epochs=5000
 loss_fn = nn.MSELoss()
