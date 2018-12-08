@@ -29,7 +29,6 @@ def load_images(max_num_load, h_dim, w_dim):
             if len(imgs) >= max_num_load: break
             if len(imgs) % 10 == 0: print(len(imgs))
 
-    print(imgs.shape)
     return np.array(imgs)
 
 #imgs=load_images(1000,500,500)

@@ -24,6 +24,7 @@ height, width = 10, 10
 
 X_train = torch.from_numpy(load_images(100,height,width)).float()
 #X_train = X_train.cuda()
+print(X_train.size())
 
 print('Done loading')
 
