@@ -20,7 +20,7 @@ from load_images import load_images
 
 dtype = torch.cuda.FloatTensor
 
-height, width = 100, 100
+height, width = 80, 80
 
 X_train = torch.from_numpy(load_images(1000,height,width)).float()
 #X_train = X_train.cuda()
@@ -82,7 +82,7 @@ final_4 = final[4].reshape(height, width,3)
 print(type(final_4))
 print(final_4.shape)
 plt.imshow(final_4)
-plt.savefig('image_4_100by100.png')
+plt.savefig('image_4_80by80.png')
 
 
 
