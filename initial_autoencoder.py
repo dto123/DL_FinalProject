@@ -33,7 +33,7 @@ train_loader = Data.DataLoader(dataset = X_train, batch_size = 64, shuffle = Tru
 
 learning_rate = 1e-4
 
-in_size = height*width
+in_size = height*width*3
 reduction=1
 
 model = nn.Sequential(
