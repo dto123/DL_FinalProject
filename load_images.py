@@ -10,6 +10,7 @@ from PIL import Image
 import os
 import matplotlib.pyplot as plt
 import numpy as np
+import Image
 
 
 def load_images(max_num_load, h_dim, w_dim):
