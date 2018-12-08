@@ -10,7 +10,7 @@ from PIL import Image
 import os
 import matplotlib.pyplot as plt
 import numpy as np
-
+plt.switch_backend('agg')
 
 def load_images(max_num_load, h_dim, w_dim):
     imgs = []
