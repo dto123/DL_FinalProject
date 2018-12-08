@@ -58,12 +58,13 @@ for e in range(epochs):
         #batch = np.random.choice(X.shape[0], 50)
 
         x = Variable(x)
+
         batch_x  = x.view(-1, in_size)
         print(type(batch_x))
         #batch_x = batch_x.cuda()
         #print(batch_x)
         #reconstructed = model(X[batch])
-        reconstructed = model(batch_x)
+        reconstructed = model(batch_x.cuda())
         print(type(reconstructed))
         model = model.cuda()
         loss = loss_fn(reconstructed, batch_x)
