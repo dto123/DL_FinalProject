@@ -32,6 +32,6 @@ def load_images(max_num_load, h_dim, w_dim):
     return np.array(imgs)
 
 imgs=load_images(1000,500,500)
-#plt.show()
+plt.imshow(img[3])
 
 print(imgs.shape)
