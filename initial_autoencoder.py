@@ -8,7 +8,7 @@ from sklearn.preprocessing import normalize
 import scipy.io as sio
 import matplotlib.image as image
 from sklearn.metrics import mean_squared_error
-rom torch.autograd import Variable
+from torch.autograd import Variable
 import numpy as np
 import torch
 import torch.nn as nn
@@ -23,7 +23,7 @@ dtype = torch.cuda.FloatTensor
 height, width = 10,10
 
 X_train = torch.from_numpy(load_images(100,height,width)).float()
-X_train = X_train.cuda()
+#X_train = X_train.cuda()
 
 print()
 
@@ -58,7 +58,7 @@ for e in range(epochs):
 
         #batch_x  = x.view(-1, in_size)
         batch = Variable((-1, in_size)).type(dtype)
-        batch_x = batch_x.cuda()
+        #batch_x = batch_x.cuda()
 
         #reconstructed = model(X[batch])
         reconstructed = model(batch_x)
