@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov  8 16:31:06 2018
-
-@author: eric
-"""
-
 import random
 import numpy as np
 #from cs682.data_utils import load_CIFAR10
@@ -16,6 +8,7 @@ from sklearn.preprocessing import normalize
 import scipy.io as sio
 import matplotlib.image as image
 from sklearn.metrics import mean_squared_error
+rom torch.autograd import Variable
 import numpy as np
 import torch
 import torch.nn as nn
@@ -25,6 +18,7 @@ import torch.utils.data as Data
 
 from load_images import load_images
 
+dtype = torch.cuda.FloatTensor
 
 height, width = 10,10
 
@@ -61,7 +55,9 @@ for e in range(epochs):
 
         #batch = np.random.choice(X.shape[0], 50)
 
-        batch_x  = x.view(-1, in_size)
+
+        #batch_x  = x.view(-1, in_size)
+        batch = Variable((-1, in_size)).type(dtype)
         batch_x = batch_x.cuda()
 
         #reconstructed = model(X[batch])
