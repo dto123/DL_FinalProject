@@ -59,7 +59,7 @@ for e in range(epochs):
         batch_x  = x.view(-1, in_size)
         print(type(batch_x))
         batch_x = batch_x.cuda()
-
+        print(batch_x)
         #reconstructed = model(X[batch])
         reconstructed = model(batch_x)
         model = model.cuda()
