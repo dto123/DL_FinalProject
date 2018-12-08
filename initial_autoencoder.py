@@ -30,7 +30,7 @@ print('Done loading')
 train_loader = Data.DataLoader(dataset = X_train, batch_size = 64, shuffle = True)
 ###################################################################
 
-learning_rate = 1e-5
+learning_rate = 1e-4
 
 in_size = height*width
 reduction=1
@@ -47,7 +47,7 @@ model.cuda()
 # define optimizer
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay = 0.9)
 accuracies = []
-epochs=100000
+epochs=1000
 loss_fn = nn.MSELoss()
 
 print('Start training')
