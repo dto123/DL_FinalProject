@@ -20,7 +20,7 @@ from load_images import load_images
 
 dtype = torch.cuda.FloatTensor
 
-height, width = 200, 200
+height, width = 100, 100
 
 X_train = torch.from_numpy(load_images(100,height,width)).float()
 #X_train = X_train.cuda()
