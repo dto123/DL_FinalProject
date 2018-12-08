@@ -20,9 +20,9 @@ from load_images import load_images
 
 dtype = torch.cuda.FloatTensor
 
-height, width = 10,10
+height, width = 500,500
 
-X_train = torch.from_numpy(load_images(100,height,width)).float()
+X_train = torch.from_numpy(load_images(200,height,width)).float()
 #X_train = X_train.cuda()
 
 print()
@@ -60,12 +60,12 @@ for e in range(epochs):
         x = Variable(x)
 
         batch_x  = x.view(-1, in_size)
-        print(type(batch_x))
+        #print(type(batch_x))
         #batch_x = batch_x.cuda()
         #print(batch_x)
         #reconstructed = model(X[batch])
         reconstructed = model(batch_x.cuda())
-        print(type(reconstructed))
+        #print(type(reconstructed))
         model = model.cuda()
         loss = loss_fn(reconstructed, batch_x.cuda())
         #print(loss)
