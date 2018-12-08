@@ -77,12 +77,12 @@ for e in range(epochs):
         optimizer.step()
 
 
-print(type(reconstructed[4]))
-plt.imshow(reconstructed[4].float())
-plt.savefig('image_4_10by10.png')
+#print(type(,reconstructed[4]).float())
+#plt.imshow(reconstructed[4].float())
+#plt.savefig('image_4_10by10.png')
 
 
-
+check_image(model, X, 4, height, width)
 
 
    # print('epoch: ', e, 'step: ', step, 'loss: ', loss)
@@ -92,4 +92,5 @@ def check_image(model, X, ind, height, width):
     img = reconstructed.detach().numpy()[ind].reshape(height, width,3)
     orig_img = X.detach().numpy()[ind].reshape(height, width,3)
     plt.imshow(img)
+    plt.savefig('image_4_10by10.png')
     #plt2.imshow(orig_img)
