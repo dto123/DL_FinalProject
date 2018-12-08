@@ -78,9 +78,11 @@ for e in range(epochs):
 
 final = reconstructed.data.cpu()
 print(type(final))
-plt.imshow(final[4])
+print(final.size())
+#plt.imshow(final[4])
 print(type(final[4]))
-plt.savefig('image_4_10by10.png')
+print(final[4].size())
+plt.savefig(final[4], 'image_4_10by10.png')
 
 
 
