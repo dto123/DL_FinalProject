@@ -62,7 +62,7 @@ for e in range(epochs):
         #batch = np.random.choice(X.shape[0], 50)
 
         batch_x  = x.view(-1, in_size)
-
+        batch_x = batch_x.cuda()
 
         #reconstructed = model(X[batch])
         reconstructed = model(batch_x)
