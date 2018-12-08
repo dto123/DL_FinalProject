@@ -29,7 +29,9 @@ from load_images import load_images
 height, width = 10,10
 
 X_train = torch.from_numpy(load_images(100,height,width)).float()
+X_train = X_train.cuda()
 
+print()
 
 train_loader = Data.DataLoader(dataset = X_train, batch_size = 64, shuffle = True)
 ###################################################################
@@ -56,39 +58,29 @@ for e in range(epochs):
 
     for step, x in enumerate(train_loader):
         #model.train()  # put model to training mode
-        
+
         #batch = np.random.choice(X.shape[0], 50)
-        
+
         batch_x  = x.view(-1, in_size)
-        
-        
+
+
         #reconstructed = model(X[batch])
         reconstructed = model(batch_x)
-        
+        model = model.cuda()
         loss = loss_fn(reconstructed, batch_x)
         #print(loss)
-        print('epoch: ', e, 'step: ', step, 'loss: ', loss)   
+        print('epoch: ', e, 'step: ', step, 'loss: ', loss)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        
-        
-        
-   # print('epoch: ', e, 'step: ', step, 'loss: ', loss)        
+
+
+
+   # print('epoch: ', e, 'step: ', step, 'loss: ', loss)
 def check_image(model, X, ind, height, width):
-    
+
     reconstructed = model(X)
     img = reconstructed.detach().numpy()[ind].reshape(height, width,3)
     orig_img = X.detach().numpy()[ind].reshape(height, width,3)
     plt.imshow(img)
-    #plt2.imshow(orig_img)    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    #plt2.imshow(orig_img)
