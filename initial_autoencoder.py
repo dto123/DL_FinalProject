@@ -99,6 +99,9 @@ plt.savefig('orig_image_5_50by50.png')
 
 
    # print('epoch: ', e, 'step: ', step, 'loss: ', loss)
+
+N = X_train.shape()[0]
+X_train = np.reshape(X_train, (N, in_size)) 
 def check_image(model, X, ind, height, width):
     x = Variable(X).cuda()
     print(type(x))
