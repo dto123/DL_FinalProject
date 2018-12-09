@@ -36,9 +36,9 @@ def mse(img1, img2):
 num_samples = 300
 
 dim = 50
-percent = 0.01
+#percent = 0.01
 
-#X = load_images(num_samples, dim, dim).reshape(num_samples,-1)
+X = load_images(num_samples, dim, dim).reshape(num_samples,-1)
 
 
 
