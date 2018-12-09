@@ -101,7 +101,7 @@ for e in range(epochs):
 #reconstructed = model(X_train.transpose(1,3)).transpose(1,3)
 #reconstructed.clamp_(0,255)
 
-final = reconstructed.data.cpu()..clamp_(0,255).transpose(1,3).numpy()
+final = reconstructed.data.cpu().clamp_(0,255).transpose(1,3).numpy()
 print(type(final))
 print(final.shape)
 
