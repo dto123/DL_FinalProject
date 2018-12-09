@@ -60,6 +60,8 @@ if(run_pca):
 
         pca = PCA_Compress()
 
+        print(X.shape)
+
         compressed = pca.compress(X, total)
 
         print(compressed.shape)
