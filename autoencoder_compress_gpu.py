@@ -5,7 +5,7 @@ import torch.optim as optim
 import torch.utils.data as Data
 
 
-class linear_autoencode(nn.Module):
+class linear_autoencoder(nn.Module):
     def __init__(self, size, reduction):
         super(linear_autoencoder, self).__init__()
         self.size=size
