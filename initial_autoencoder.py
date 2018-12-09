@@ -53,7 +53,8 @@ model.cuda()
 # define optimizer
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay = 0.9)
 accuracies = []
-epochs=10
+epochs=1000
+
 loss_fn = nn.MSELoss()
 
 print('Start training')
