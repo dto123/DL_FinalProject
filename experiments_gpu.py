@@ -12,7 +12,11 @@ from pca_compress import PCA_Compress
 plt.switch_backend('agg')
 
 def show(img_vec):
+    print(img_vec.shape[0])
+    print((np.sqrt(img_vec.shape[0]/3))
+
     dim = int(np.sqrt(img_vec.shape[0]/3))
+    print(do,)
     img = img_vec.reshape(dim, dim, 3)
     plt.imshow(img.astype(np.uint8))
 
@@ -59,7 +63,9 @@ if(run_pca):
         compressed = pca.compress(X, total)
         reconstructed = pca.uncompress(compressed)
 
+
         show(reconstructed[0])
+
         print('percentage: ', p)
         print(msssim(X[0], reconstructed[0]))
 
