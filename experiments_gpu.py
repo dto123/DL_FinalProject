@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec  9 16:46:57 2018
-
-@author: eric
-"""
-
 from load_images import load_images
 import matplotlib.pyplot as plt
 import numpy as np
@@ -17,6 +9,7 @@ from autoencoder_compress_gpu import linear_autoencoder
 from autoencoder_compress import linear_autoencoder
 from pca_compress import PCA_Compress
 
+plt.switch_backend('agg')
 
 def show(img_vec):
     dim = int(np.sqrt(img_vec.shape[0]/3))
@@ -51,7 +44,7 @@ percent = 0.01
 
 ##################### PCA #####################
 
-run_pca=False
+run_pca=True
 
 if(run_pca):
     percentages = [0.01, .02, .03, .04, .05, .06, .07, .08, .09]
@@ -75,7 +68,7 @@ if(run_pca):
 
 ################ AUTOENCODER ###################
 
-run_auto=True
+run_auto=False
 
 if(run_auto):
 
