@@ -100,7 +100,7 @@ plt.savefig('orig_image_5_50by50.png')
    # print('epoch: ', e, 'step: ', step, 'loss: ', loss)
 def check_image(model, X, ind, height, width):
     x = Variable(X)
-    reconstructed = model(x)
+    reconstructed = model(x.cuda())
     img = reconstructed.data.cpu().numpy()[ind].reshape(height, width,3)
     orig = X.detach().numpy()[ind].reshape(height, width,3)
 
