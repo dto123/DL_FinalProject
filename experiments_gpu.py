@@ -13,10 +13,10 @@ plt.switch_backend('agg')
 
 def show(img_vec):
     print(img_vec.shape[0])
-    print((np.sqrt(img_vec.shape[0]/3))
+    print((np.sqrt(img_vec.shape[0]/3)))
 
     dim = int(np.sqrt(img_vec.shape[0]/3))
-    print(do,)
+    print(dim)
     img = img_vec.reshape(dim, dim, 3)
     plt.imshow(img.astype(np.uint8))
 
