@@ -69,7 +69,7 @@ model.cuda()
 # define optimizer
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay = 0.9)
 accuracies = []
-epochs=1000
+epochs=100
 loss_fn = nn.MSELoss()
 
 print('Start training')
@@ -98,10 +98,13 @@ for e in range(epochs):
         loss.backward()
         optimizer.step()
 
-reconstructed = model(X_train.transpose(1,3)).transpose(1,3)
-reconstructed.clamp_(0,255)
+#reconstructed = model(X_train.transpose(1,3)).transpose(1,3)
+#reconstructed.clamp_(0,255)
 
-final = reconstructed.data.cpu().numpy()
+final = reconstructed.data.cpu()..clamp_(0,255).transpose(1,3).numpy()
+print(type(final))
+print(final.shape)
+
 final_6 = final[6].reshape(height, width,3)
 print(type(final_6))
 print(final_6.shape)
