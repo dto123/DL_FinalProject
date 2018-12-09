@@ -53,7 +53,7 @@ model.cuda()
 # define optimizer
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay = 0.9)
 accuracies = []
-epochs=100
+epochs=10
 loss_fn = nn.MSELoss()
 
 print('Start training')
@@ -72,6 +72,7 @@ for e in range(epochs):
         #batch_x = batch_x.cuda()
         #print(batch_x)
         #reconstructed = model(X[batch])
+        print(batch_x.data.size())
         reconstructed = model(batch_x.cuda())
         #print(type(reconstructed))
         model = model.cuda()
