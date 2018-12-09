@@ -99,12 +99,19 @@ plt.savefig('orig_image_5_50by50.png')
 
    # print('epoch: ', e, 'step: ', step, 'loss: ', loss)
 def check_image(model, X, ind, height, width):
+    x = Variable(X)
+    reconstructed = model(x)
+    img = reconstructed.data.cpu().numpy()[ind].reshape(height, width,3)
+    orig = X.detach().numpy()[ind].reshape(height, width,3)
 
-    reconstructed = model(X)
-    img = reconstructed.detach().numpy()[ind].reshape(height, width,3)
-    orig_img = X.detach().numpy()[ind].reshape(height, width,3)
+
+    #img = reconstructed.detach().numpy()[ind].reshape(height, width,3)
+    #orig_img = X.detach().numpy()[ind].reshape(height, width,3)
     plt.imshow(img)
-    plt.savefig('image_4_10by10.png')
+    plt.savefig('new_image.png')
+
+    plt.imshow(orig)
+    plt.savefig('orig_image.png')
     #plt2.imshow(orig_img)
 
-#check_image(model, X_train, 4, height, width)
+check_image(model, X_train, 8, height, width)
