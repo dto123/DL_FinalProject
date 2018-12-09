@@ -17,8 +17,24 @@ import torch.nn as nn
 import torch.optim as optim
 import time
 import torch.utils.data as Data
-
 from load_images import load_images
+
+def flatten(x):
+    N = x.shape[0]
+    return x.view(N, -1)
+
+class Flatten(nn.Module):
+    def forward(self, x):
+        return flatten(x)
+
+def unflatten(x):
+    N = x.shape[0]
+    return x.view(N, 3, 50, 50)
+
+class Unflatten(nn.Module):
+
+    def forward(self, x):
+        return unflatten(x)
 
 plt.switch_backend('agg')
 
@@ -41,12 +57,12 @@ in_size = height*width*3
 reduction=2
 
 model = nn.Sequential(
-
-    nn.Linear(in_size,int(in_size/reduction)),
-    #nn.ReLU(True),
-    # coded is here
-    nn.Linear(int(in_size/reduction), in_size)
-)
+        nn.Conv2d(3, 3, kernel_size=1, stride=1),
+        Flatten(),
+        nn.Linear(in_size, int(in_size/2)),
+        nn.Linear(int(in_size/2), in_size),
+        Unflatten()
+    )
 
 model.cuda()
 
@@ -67,32 +83,34 @@ for e in range(epochs):
 
         x = Variable(x)
 
-        batch_x  = x.view(-1, in_size)
+        #batch_x  = x.view(-1, in_size)
         #print(type(batch_x))
         #batch_x = batch_x.cuda()
         #print(batch_x)
         #reconstructed = model(X[batch])
-        reconstructed = model(batch_x.cuda())
+        reconstructed = model(x.transpose(1,3).cuda())
         #print(type(reconstructed))
         model = model.cuda()
-        loss = loss_fn(reconstructed, batch_x.cuda())
+        loss = loss_fn(reconstructed, x.transpose(1,3).cuda())
         #print(loss)
         print('epoch: ', e, 'step: ', step, 'loss: ', loss)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
 
+reconstructed = model(X_train.transpose(1,3)).transpose(1,3)
+reconstructed.clamp_(0,255)
 
 final = reconstructed.data.cpu().numpy()
-final_5 = final[5].reshape(height, width,3)
-print(type(final_5))
-print(final_5.shape)
-plt.imshow(final_5)
-plt.savefig('new_image_5_50by50.png')
+final_6 = final[6].reshape(height, width,3)
+print(type(final_6))
+print(final_6.shape)
+plt.imshow(final_6)
+plt.savefig('new_image_6_50by50.png')
 
-orig = X_train[5]
+orig = X_train[6]
 plt.imshow(orig)
-plt.savefig('orig_image_5_50by50.png')
+plt.savefig('orig_image_6_50by50.png')
 
 
 
