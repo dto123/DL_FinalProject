@@ -122,4 +122,4 @@ def check_image(model, X, ind, height, width):
     plt.savefig('orig_image.png')
     #plt2.imshow(orig_img)
 
-check_image(model, X_train.view(-1, insize), 8, height, width)
+check_image(model, X_train.view(-1, in_size), 8, height, width)
