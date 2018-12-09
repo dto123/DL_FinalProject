@@ -23,15 +23,24 @@ import torch.optim as optim
 import time
 import torch.utils.data as Data
 from load_images import load_images
+import pytorch_msssim
 
 def flatten(x):
     N = x.shape[0]
     return x.view(N, -1)
 
-
 class Flatten(nn.Module):
     def forward(self, x):
         return flatten(x)
+    
+def unflatten(x):
+    N = x.shape[0]
+    return x.view(N, 3, 50, 50)
+
+class Unflatten(nn.Module):
+    
+    def forward(self, x):
+        return unflatten(x)
     
 def check_image(model, X, ind, height, width):
     reconstructed = model(X.transpose(1,3)).transpose(1,3)
@@ -43,35 +52,11 @@ def check_image(model, X, ind, height, width):
     plt.show()
     plt2.imshow(orig_img.astype('uint8'))    
     plt2.show()
+    print('MS-SSIM',pytorch_msssim.msssim(torch.from_numpy(img.T[np.newaxis,:,:,:]), torch.from_numpy(orig_img.T[np.newaxis,:,:,:])))
     return img, orig_img
 
-class autoencoder(nn.Module):
-    def __init__(self):
-        super(autoencoder, self).__init__()
-        self.encoder = nn.Sequential(
-            nn.Conv2d(3, 16, 3, stride=3, padding=1),  # b, 16, 10, 10
-            nn.ReLU(True),
-            nn.MaxPool2d(2, stride=2),  # b, 16, 5, 5
-            nn.Conv2d(16, 8, 3, stride=2, padding=1),  # b, 8, 3, 3
-            nn.ReLU(True),
-            nn.MaxPool2d(2, stride=1)  # b, 8, 2, 2
-        )
-        self.decoder = nn.Sequential(
-            nn.ConvTranspose2d(8, 16, 3, stride=2),  # b, 16, 5, 5
-            nn.ReLU(True),
-            nn.ConvTranspose2d(16, 8, 5, stride=3, padding=1),  # b, 8, 15, 15
-            nn.ReLU(True),
-            nn.ConvTranspose2d(8, 3, 2, stride=2, padding=1),  # b, 1, 28, 28
-            nn.Tanh()
-        )
 
-    def forward(self, x):
-        x = self.encoder(x)
-        x = self.decoder(x)
-        return x
-
-
-height, width = 28,28
+height, width = 50,50
 num_samples = 100
 
 X_train = torch.from_numpy(load_images(num_samples,height,width)).float()
@@ -80,7 +65,7 @@ X_train = torch.from_numpy(load_images(num_samples,height,width)).float()
 train_loader = Data.DataLoader(dataset = X_train, batch_size = 10, shuffle = True)
 ###################################################################
 
-learning_rate = 1e-6
+learning_rate = 1e-4
 
 in_size = height*width*3
 
@@ -93,13 +78,27 @@ reduction=1
 #    nn.Linear(int(in_size/reduction), in_size),
 #)
 
-model = autoencoder()
 
+model = nn.Sequential(
+        nn.Conv2d(3, 3, kernel_size=1, stride=1),
+        Flatten(),
+        nn.Linear(in_size, int(in_size/2)),
+        nn.Linear(int(in_size/2), in_size),
+        Unflatten()
+    )
+
+
+"""
+model = nn.Sequential(
+        nn.Conv2d(3, 3, kernel_size=1, stride=1)
+        )
+"""
 # define optimizer
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=0.9)
 accuracies = []
-epochs=3000
+epochs=1500
 loss_fn = nn.MSELoss()
+#loss_fn = pytorch_msssim.msssim
 
 loss_list=[]
 
