@@ -53,7 +53,7 @@ model.cuda()
 # define optimizer
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay = 0.9)
 accuracies = []
-epochs=500
+epochs=100
 loss_fn = nn.MSELoss()
 
 print('Start training')
@@ -102,9 +102,11 @@ def check_image(model, X, ind, height, width):
     x = Variable(X).cuda()
     print(type(x))
 
+    print(x.data.cpu().size())
     reconstructed = model(x)
     img = reconstructed.data.cpu().numpy()[ind].reshape(height, width,3)
     orig = X.detach().numpy()[ind].reshape(height, width,3)
+
 
 
     #img = reconstructed.detach().numpy()[ind].reshape(height, width,3)
