@@ -1,6 +1,8 @@
 import random
 import numpy as np
 #from cs682.data_utils import load_CIFAR10
+
+
 import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt2
 from sklearn.decomposition import PCA
@@ -18,6 +20,8 @@ import torch.utils.data as Data
 
 from load_images import load_images
 
+plt.switch_backend('agg')
+
 dtype = torch.cuda.FloatTensor
 
 height, width = 50, 50
@@ -34,7 +38,7 @@ train_loader = Data.DataLoader(dataset = X_train, batch_size = 64, shuffle = Tru
 learning_rate = 1e-4
 
 in_size = height*width*3
-reduction=1
+reduction=2
 
 model = nn.Sequential(
     nn.Linear(in_size,int(in_size/reduction)),
@@ -77,13 +81,17 @@ for e in range(epochs):
         loss.backward()
         optimizer.step()
 
-final = reconstructed.data.cpu().numpy()
-final_4 = final[4].reshape(height, width,3)
-print(type(final_4))
-print(final_4.shape)
-plt.imshow(final_4)
-plt.savefig('image_4_50by50.png')
 
+final = reconstructed.data.cpu().numpy()
+final_5 = final[5].reshape(height, width,3)
+print(type(final_5))
+print(final_5.shape)
+plt.imshow(final_5)
+plt.savefig('new_image_5_50by50.png')
+
+orig = X_train[5]
+plt.imshow(orig)
+plt.savefig('orig_image_5_50by50.png')
 
 
 
