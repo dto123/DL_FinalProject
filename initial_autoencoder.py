@@ -1,6 +1,8 @@
 import random
 import numpy as np
 #from cs682.data_utils import load_CIFAR10
+
+
 import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt2
 from sklearn.decomposition import PCA
@@ -17,6 +19,8 @@ import time
 import torch.utils.data as Data
 
 from load_images import load_images
+
+plt.switch_backend('agg')
 
 dtype = torch.cuda.FloatTensor
 
@@ -79,15 +83,15 @@ for e in range(epochs):
 
 
 final = reconstructed.data.cpu().numpy()
-final_4 = final[4].reshape(height, width,3)
-print(type(final_4))
-print(final_4.shape)
-plt.imshow(final_4)
-plt.savefig('new_image_4_50by50.png')
+final_5 = final[5].reshape(height, width,3)
+print(type(final_5))
+print(final_5.shape)
+plt.imshow(final_5)
+plt.savefig('new_image_5_50by50.png')
 
-orig = X_train[4]
+orig = X_train[5]
 plt.imshow(orig)
-plt.savefig('orig_image_4_50by50.png')
+plt.savefig('orig_image_5_50by50.png')
 
 
 
