@@ -61,8 +61,12 @@ if(run_pca):
         pca = PCA_Compress()
 
         compressed = pca.compress(X, total)
+
+        print(compressed.shape)
+
         reconstructed = pca.uncompress(compressed)
 
+        print(reconstructed.shape)
 
         show(reconstructed[0])
 
