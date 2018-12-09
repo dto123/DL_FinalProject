@@ -109,7 +109,7 @@ def check_image(model, X, ind, height, width):
     print(x.data.cpu().size())
     reconstructed = model(x)
     img = reconstructed.data.cpu().numpy()[ind].reshape(height, width,3)
-    orig = X.data.numpy()[ind].reshape(height, width,3)
+    orig = X.numpy()[ind].reshape(height, width,3)
 
 
 
