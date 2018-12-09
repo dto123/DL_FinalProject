@@ -34,7 +34,7 @@ train_loader = Data.DataLoader(dataset = X_train, batch_size = 64, shuffle = Tru
 learning_rate = 1e-4
 
 in_size = height*width*3
-reduction=1
+reduction=2
 
 model = nn.Sequential(
     nn.Linear(in_size,int(in_size/reduction)),
@@ -77,13 +77,17 @@ for e in range(epochs):
         loss.backward()
         optimizer.step()
 
+
 final = reconstructed.data.cpu().numpy()
 final_4 = final[4].reshape(height, width,3)
 print(type(final_4))
 print(final_4.shape)
 plt.imshow(final_4)
-plt.savefig('image_4_50by50.png')
+plt.savefig('new_image_4_50by50.png')
 
+orig = X_train[4]
+plt.imshow(orig)
+plt.savefig('orig_image_4_50by50.png')
 
 
 
