@@ -100,8 +100,8 @@ plt.savefig('orig_image_5_50by50.png')
 
    # print('epoch: ', e, 'step: ', step, 'loss: ', loss)
 
-N = X_train.shape()[0]
-X_train = np.reshape(X_train, (N, in_size)) 
+#N = X_train.shape()[0]
+#X_train = np.reshape(X_train, (N, in_size))
 def check_image(model, X, ind, height, width):
     x = Variable(X).cuda()
     print(type(x))
@@ -122,4 +122,4 @@ def check_image(model, X, ind, height, width):
     plt.savefig('orig_image.png')
     #plt2.imshow(orig_img)
 
-check_image(model, X_train, 8, height, width)
+check_image(model, X_train.view(-1, insize), 8, height, width)
