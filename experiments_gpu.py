@@ -41,10 +41,10 @@ num_samples = 300
 
 dim = 50
 #percent = 0.01
+X = load_images(num_samples, dim, dim)
+#X = load_images(num_samples, dim, dim).reshape(num_samples,-1)
 
-X = load_images(num_samples, dim, dim).reshape(num_samples,-1)
-
-
+print(X.shape)
 
 ##################### PCA #####################
 
@@ -60,7 +60,7 @@ if(run_pca):
 
         pca = PCA_Compress()
 
-        print(X.shape)
+
 
         compressed = pca.compress(X, total)
 
