@@ -11,6 +11,30 @@ from pca_compress import PCA_Compress
 
 plt.switch_backend('agg')
 
+def msssim(img1, img2):
+    dim = int(np.sqrt(img1.shape[0]/3))
+    img1 = img1.reshape(dim, dim, 3).T
+    img2 = img2.reshape(dim, dim, 3).T
+
+    return pytorch_msssim.msssim(torch.from_numpy(img1[np.newaxis,:,:,:]).float(),
+                          torch.from_numpy(img2[np.newaxis,:,:,:]).float()).item()
+
+def mse(img1, img2):
+    return mean_squared_error(img1, img2)
+
+def msssim_batch(X, reconstructed):
+    msssim_score = [msssim(X[i], reconstructed[i]) for i in range(X.shape[0])]
+    msssim_score = np.mean([x for x in msssim_score if not math.isnan(x)])
+    return msssim_score
+
+def mse_batch(X, reconstructed):
+    mse_score = np.mean([mse(X[i], reconstructed[i]) for i in range(X.shape[0])])
+    return mse_score
+
+
+
+
+
 def show(img_vec):
     print(img_vec.shape[0])
     print((np.sqrt(img_vec.shape[0]/3)))
@@ -97,7 +121,10 @@ if(run_auto):
     reconstructed = model.uncompress(compressed)
     print(type(reconstructed))
 
-    show(reconstructed[0])
+
+    print('mse', mse_batch(X.data.numpy(), reconstructed.data.numpy()))
+
+    #show(reconstructed[0])
 
 #    msssim_score = [msssim(X[i], reconstructed[i]) for i in range(num_samples)]
 #    msssim_score = np.mean([x for x in msssim_score if x!=NaN])
