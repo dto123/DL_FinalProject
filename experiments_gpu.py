@@ -80,12 +80,14 @@ if(run_pca):
 
 ################ AUTOENCODER ###################
 
+
 run_auto=True
 
 if(run_auto):
 
     model = linear_autoencoder_gpu(X.shape[1], 0.01)
 
+    model.cuda()
     model.train(X, epochs=100)
 
     print(type(model))
