@@ -48,7 +48,7 @@ print(X.shape)
 
 ##################### PCA #####################
 
-run_pca=True
+run_pca=False
 
 if(run_pca):
     percentages = [0.01, .02, .03, .04, .05, .06, .07, .08, .09]
@@ -91,7 +91,8 @@ if(run_auto):
     model.train(X, epochs=100)
 
     print(type(model))
-    compressed = model.compress(Variable(torch.from_numpy(X)))
+    print(type(X))
+    compressed = model.compress(Variable(X))
     print(type(compressed))
     reconstructed = model.uncompress(compressed)
     print(type(reconstructed))
