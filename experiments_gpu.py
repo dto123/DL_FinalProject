@@ -28,8 +28,7 @@ def msssim_batch(X, reconstructed):
     return msssim_score
 
 def mse_batch(X, reconstructed):
-    X = X.data.numpy()
-    reconstructed = reconstructed.data.numpy()
+    
     mse_score = np.mean([mse(X[i], reconstructed[i]) for i in range(X.shape[0])])
     return mse_score
 
@@ -126,11 +125,10 @@ if(run_auto):
     print('MSE')
     print(type(X))
     print(type(reconstructed))
-    print(type(X.data.numpy()))
     print(type(reconstructed.data.numpy()))
 
 
-    print('mse', mse_batch(X, reconstructed))
+    print('mse', mse_batch(X, reconstructed.data.numpy()))
 
     #show(reconstructed[0])
 
