@@ -30,6 +30,7 @@ class linear_autoencoder(nn.Module):
         return x
 
     def compress(self, x):
+        print('compress')
         print(type(x))
         x = x.data
         return self.encoder(x.float()).detach().numpy()
