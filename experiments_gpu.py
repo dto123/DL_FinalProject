@@ -123,11 +123,6 @@ if(run_auto):
     print(type(reconstructed))
 
     print('MSE')
-    print(type(X))
-    print(type(reconstructed))
-    print(type(reconstructed.data.numpy()))
-
-
     print('mse', mse_batch(X, reconstructed.data.cpu().numpy()))
 
     #show(reconstructed[0])
