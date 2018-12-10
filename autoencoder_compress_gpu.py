@@ -27,7 +27,7 @@ class linear_autoencoder_gpu(nn.Module):
         print('compress')
         print(type(x))
         x = x.data
-        return self.encoder(torch.from_numpy(x).float()).detach().numpy()
+        return self.encoder(x.float()).detach().numpy()
     def uncompress(self, x): return self.decoder(torch.from_numpy(x).float()).detach().numpy()
 
     def train(self, X, epochs=100):
