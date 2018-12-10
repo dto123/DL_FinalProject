@@ -18,11 +18,16 @@ class linear_autoencoder_gpu(nn.Module):
         )
 
     def forward(self, x):
+
         x = self.encoder(x)
         x = self.decoder(x)
         return x
 
-    def compress(self, x): return self.encoder(torch.from_numpy(x).float()).detach().numpy()
+    def compress(self, x):
+        print('compress')
+        print(type(x))
+        x = x.data
+        return self.encoder(torch.from_numpy(x).float()).detach().numpy()
     def uncompress(self, x): return self.decoder(torch.from_numpy(x).float()).detach().numpy()
 
     def train(self, X, epochs=100):
