@@ -78,7 +78,7 @@ class linear_autoencoder_gpu(nn.Module):
 
 
         # define optimizer
-        optimizer = optim.Adam(self.parameters(), lr=learning_rate, weight_decay=0.9)
+        optimizer = optim.Adam(self.parameters(), lr=learning_rate, weight_decay=0)
         loss_fn = nn.MSELoss()
 
         for e in range(epochs):
