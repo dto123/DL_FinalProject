@@ -41,6 +41,7 @@ class linear_autoencoder(nn.Module):
 
             for step, x in enumerate(train_loader):
                 #model.train()  # put model to training mode
+                x = Variable(x)
 
                 reconstructed = self.forward(x)
 
