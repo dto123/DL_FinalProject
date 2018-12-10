@@ -123,6 +123,12 @@ if(run_auto):
     reconstructed = model.uncompress(compressed)
     print(type(reconstructed))
 
+    print('MSE')
+    print(type(X))
+    print(type(reconstructed))
+    print(type(X.data.numpy()))
+    print(type(reconstructed.data.numpy()))
+
 
     print('mse', mse_batch(X, reconstructed))
 
