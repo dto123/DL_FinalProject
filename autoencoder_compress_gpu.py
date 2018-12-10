@@ -5,17 +5,57 @@ import torch.optim as optim
 import torch.utils.data as Data
 from torch.autograd import Variable
 
+def flatten(x):
+    N = x.shape[0]
+    return x.transpose(1,3).contiguous().view(N, -1)
+
+class Flatten(nn.Module):
+    def forward(self, x):
+        return flatten(x)
+
+def unflatten(x):
+    N = x.shape[0]
+    square_dim = int(math.sqrt(x.shape[1]/3))
+    return x.view(N, square_dim, square_dim, 3).transpose(1,3)
+
+class Unflatten(nn.Module):
+    def forward(self, x):
+        return unflatten(x)
+
+
 class linear_autoencoder_gpu(nn.Module):
     def __init__(self, size, reduction):
         super(linear_autoencoder_gpu, self).__init__()
         self.size=size
         self.reduction=reduction
+
+
+
         self.encoder = nn.Sequential(
+            #nn.Linear(size, size),
+            Unflatten(),
+            nn.Conv2d(3, 3, kernel_size=1, stride=1),
+            Flatten(),
+            nn.BatchNorm1d(size),
+            nn.ReLU(),
             nn.Linear(size, int(size*reduction)),
+            #nn.Tanh(),
+            #nn.Linear(int(size*reduction),int(size*reduction))
+
         )
         self.decoder = nn.Sequential(
-            nn.Linear(int(size*reduction), size)
+            nn.Linear(int(size*reduction), size),
+            nn.BatchNorm1d(int(size)),
+            nn.ReLU(),
+            Unflatten(),
+            nn.Conv2d(3, 3, kernel_size=1, stride=1),
+            Flatten(),
+            #nn.ReLU(),
+            #nn.Linear(size, size),
         )
+
+
+
 
     def forward(self, x):
 
@@ -34,7 +74,7 @@ class linear_autoencoder_gpu(nn.Module):
         X = torch.from_numpy(X).float()
         train_loader = Data.DataLoader(dataset = X, batch_size = 64, shuffle = True)
 
-        learning_rate = 1e-4
+        learning_rate = 1e-2
 
 
         # define optimizer
