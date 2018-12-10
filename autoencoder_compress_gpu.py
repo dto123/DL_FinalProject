@@ -43,10 +43,10 @@ class linear_autoencoder_gpu(nn.Module):
                 #model.train()  # put model to training mode
                 x = Variable(x)
 
-                reconstructed = self.forward(x)
+                reconstructed = self.forward(x.cuda())
 
                 #loss = loss_fn(reconstructed, batch_x)
-                loss = loss_fn(reconstructed, x)
+                loss = loss_fn(reconstructed, x.cuda())
                 #print(loss)
                 print('epoch: ', e, 'step: ', step, 'loss: ', loss)
                 optimizer.zero_grad()
