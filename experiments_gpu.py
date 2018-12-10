@@ -5,8 +5,8 @@ import pytorch_msssim
 import torch
 from sklearn.metrics import mean_squared_error
 
-from autoencoder_compress_gpu import linear_autoencoder
-from autoencoder_compress import linear_autoencoder
+from autoencoder_compress_gpu import linear_autoencoder_gpu
+#from autoencoder_compress import linear_autoencoder
 from pca_compress import PCA_Compress
 
 plt.switch_backend('agg')
