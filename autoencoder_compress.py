@@ -28,35 +28,38 @@ class linear_autoencoder(nn.Module):
         x = self.encoder(x)
         x = self.decoder(x)
         return x
-    
-    def compress(self, x): return self.encoder(torch.from_numpy(x).float()).detach().numpy()
-    def uncompress(self, x): return self.decoder(torch.from_numpy(x).float()).detach().numpy()
-    
+
+    def compress(self, x):
+        print(type(x))
+        x = x.data
+        return self.encoder(x.float()).detach().numpy()
+
+    def uncompress(self, x):
+        return self.decoder(torch.from_numpy(x).float()).detach().numpy()
+
     def train(self, X, epochs=100):
-        
+
         X = torch.from_numpy(X).float()
         train_loader = Data.DataLoader(dataset = X, batch_size = 64, shuffle = True)
-        
+
         learning_rate = 1e-4
-        
-    
+
+
         # define optimizer
         optimizer = optim.Adam(self.parameters(), lr=learning_rate, weight_decay=0.9)
         loss_fn = nn.MSELoss()
-        
+
         for e in range(epochs):
-        
+
             for step, x in enumerate(train_loader):
                 #model.train()  # put model to training mode
-            
+
                 reconstructed = self.forward(x)
-                
+
                 #loss = loss_fn(reconstructed, batch_x)
                 loss = loss_fn(reconstructed, x)
                 #print(loss)
-                print('epoch: ', e, 'step: ', step, 'loss: ', loss.item())   
+                print('epoch: ', e, 'step: ', step, 'loss: ', loss.item())
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
-                
-
