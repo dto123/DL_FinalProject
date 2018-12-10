@@ -4,7 +4,7 @@ import numpy as np
 import pytorch_msssim
 import torch
 from sklearn.metrics import mean_squared_error
-
+from torch.autograd import Variable
 from autoencoder_compress_gpu import linear_autoencoder_gpu
 #from autoencoder_compress import linear_autoencoder
 from pca_compress import PCA_Compress
