@@ -37,7 +37,7 @@ def mse(img1, img2):
 
 ################### LOAD DATA ###################
 
-num_samples = 300
+num_samples = 100
 
 dim = 50
 #percent = 0.01
