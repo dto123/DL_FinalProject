@@ -62,7 +62,7 @@ def mse(img1, img2):
 
 ################### LOAD DATA ###################
 
-num_samples = 100
+num_samples = 1000
 
 dim = 50
 #percent = 0.01
@@ -113,14 +113,14 @@ if(run_auto):
     model = linear_autoencoder_gpu(X.shape[1], 0.01)
 
     model.cuda()
-    model.train(X, epochs=100)
+    model.train(X, epochs=10000)
 
-    print(type(model))
-    print(type(X))
+    #print(type(model))
+    #print(type(X))
     compressed = model.compress(Variable(torch.from_numpy(X)))
-    print(type(compressed))
+    #print(type(compressed))
     reconstructed = model.uncompress(compressed)
-    print(type(reconstructed))
+    #print(type(reconstructed))
 
     print('MSE')
     print('mse', mse_batch(X, reconstructed.data.cpu().numpy()))
