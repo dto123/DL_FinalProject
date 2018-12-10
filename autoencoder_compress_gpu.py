@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.utils.data as Data
-
+from torch.autograd import Variable
 
 class linear_autoencoder_gpu(nn.Module):
     def __init__(self, size, reduction):
