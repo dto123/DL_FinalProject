@@ -86,10 +86,13 @@ if(run_auto):
 
     model = linear_autoencoder_gpu(X.shape[1], 0.01)
 
-    model.train(X, epochs=1000)
+    model.train(X, epochs=100)
 
-    compressed = model.compress(X)
+    print(type(model))
+    compressed = model.compress(Variable(X))
+    print(type(compressed))
     reconstructed = model.uncompress(compressed)
+    print(type(reconstructed))
 
     show(reconstructed[0])
 
