@@ -48,7 +48,7 @@ class linear_autoencoder_gpu(nn.Module):
                 #loss = loss_fn(reconstructed, batch_x)
                 loss = loss_fn(reconstructed, x)
                 #print(loss)
-                print('epoch: ', e, 'step: ', step, 'loss: ', loss.item())
+                print('epoch: ', e, 'step: ', step, 'loss: ', loss)
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
