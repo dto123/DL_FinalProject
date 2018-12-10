@@ -84,7 +84,7 @@ run_auto=True
 
 if(run_auto):
 
-    model = linear_autoencoder(X.shape[1], 0.01)
+    model = linear_autoencoder_gpu(X.shape[1], 0.01)
 
     model.train(X, epochs=1000)
 

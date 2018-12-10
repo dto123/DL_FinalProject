@@ -5,9 +5,9 @@ import torch.optim as optim
 import torch.utils.data as Data
 
 
-class linear_autoencoder(nn.Module):
+class linear_autoencoder_gpu(nn.Module):
     def __init__(self, size, reduction):
-        super(linear_autoencoder, self).__init__()
+        super(linear_autoencoder_gpu, self).__init__()
         self.size=size
         self.reduction=reduction
         self.encoder = nn.Sequential(
