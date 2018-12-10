@@ -38,18 +38,22 @@ class linear_autoencoder_gpu(nn.Module):
             Flatten(),
             #nn.BatchNorm1d(size),
             #nn.ReLU(),
-            nn.Linear(size, int(size*reduction)),
+            nn.Linear(size, int(size*10*reduction)),
+            nn.Linear(int(size*10*reduction), int(size*reduction)),
             #nn.Tanh(),
             #nn.Linear(int(size*reduction),int(size*reduction))
 
         )
         self.decoder = nn.Sequential(
-            nn.Linear(int(size*reduction), size),
+            nn.Linear(int(size*reduction), int(size*10*reduction)),
+            nn.Linear(int(size*10*reduction), size),
+
+            #nn.Linear(int(size*reduction), size),
             #nn.BatchNorm1d(int(size)),
             #nn.ReLU(),
-            Unflatten(),
-            nn.Conv2d(3, 3, kernel_size=1, stride=1),
-            Flatten(),
+            #Unflatten(),
+            #nn.Conv2d(3, 3, kernel_size=1, stride=1),
+            #Flatten(),
             #nn.ReLU(),
             #nn.Linear(size, size),
         )
