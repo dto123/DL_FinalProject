@@ -19,7 +19,7 @@ class PCA_Compress():
     def compress(self, X, dims):
         self.pca = PCA(dims)
 
-        X = X.data.cpu().numpy()
+        X = X.data.numpy()
         lower_dim_data = self.pca.fit_transform(X)
         return lower_dim_data
 
