@@ -92,7 +92,7 @@ if(run_auto):
 
     print(type(model))
     print(type(X))
-    compressed = model.compress(Variable(X))
+    compressed = model.compress(Variable(torch.from_numpy(X)))
     print(type(compressed))
     reconstructed = model.uncompress(compressed)
     print(type(reconstructed))
