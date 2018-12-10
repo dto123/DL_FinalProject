@@ -34,20 +34,20 @@ def load_images(max_num_load, h_dim, w_dim, bw=False):
             s = np.array(jpgfile)
             if(s.shape[0] < h_dim or s.shape[1] < w_dim or s.ndim!=3): continue
 
-            print('original_image: ' ,s.shape)
-            print(h_dim)
-            print(w_dim)
+            #print('original_image: ' ,s.shape)
+            #print(h_dim)
+            #print(w_dim)
 
             # crop image
             s = s[:h_dim, :w_dim, :]
 
-            print('cropped image: ' ,s.shape)
+            #print('cropped image: ' ,s.shape)
 
             imgs.append(s)
             if len(imgs) >= max_num_load: break
             if len(imgs) % 10 == 0: print(len(imgs))
 
-    print('size: ' ,np.array(imgs).shape)
+    #print('size: ' ,np.array(imgs).shape)
     return np.array(imgs)
 
 #imgs=load_images(1000,500,500)

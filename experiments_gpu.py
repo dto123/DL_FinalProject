@@ -73,14 +73,14 @@ if(run_pca):
         show(reconstructed[0])
 
         print('percentage: ', p)
-        print(msssim(X[0], reconstructed[0]))
+        #print(msssim(X[0], reconstructed[0]))
 
 
 
 
 ################ AUTOENCODER ###################
 
-run_auto=False
+run_auto=True
 
 if(run_auto):
 
