@@ -26,7 +26,7 @@ class linear_autoencoder_gpu(nn.Module):
     def compress(self, x):
         print('compress')
         print(type(x))
-        return self.encoder(x)
+        return self.encoder(x.cuda().float())
     def uncompress(self, x): return self.decoder(x)
 
     def train(self, X, epochs=100):
