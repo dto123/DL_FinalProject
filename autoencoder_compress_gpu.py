@@ -40,9 +40,9 @@ class linear_autoencoder_gpu(nn.Module):
             #nn.ReLU(),
             nn.Linear(size, int(size*.5)),
             nn.Relu(),
-            nn.Linear(int(size*.5), int(size*.25))
+            nn.Linear(int(size*.5), int(size*.25)),
             nn.ReLU(),
-            nn.Linear(int(size*.25), int(size*.125))
+            nn.Linear(int(size*.25), int(size*.125)),
             nn.ReLU(),
             #nn.Linear(int(size*10*reduction), int(size*reduction)),
             #nn.Tanh(),
@@ -54,9 +54,9 @@ class linear_autoencoder_gpu(nn.Module):
             #nn.Linear(int(size*10*reduction), size),
             nn.Linear(int(size*.125), int(size*.25)),
             nn.Relu(),
-            nn.Linear(int(size*.25), int(size*.5))
+            nn.Linear(int(size*.25), int(size*.5)),
             nn.ReLU(),
-            nn.Linear(int(size*.5), size)
+            nn.Linear(int(size*.5), size),
             nn.Sigmoid(),
 
             #nn.Linear(int(size*reduction), size),
