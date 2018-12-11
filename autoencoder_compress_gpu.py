@@ -58,7 +58,7 @@ class linear_autoencoder_gpu(nn.Module):
             #nn.BatchNorm1d(int(size)),
             #nn.ReLU(),
             Unflatten(),
-            nn.Conv2d(3, 3, kernel_size=2, stride=2),
+            nn.ConvTranspose2d(3, 3, kernel_size=2, stride=2),
             Flatten(),
             #nn.ReLU(),
             #nn.Linear(size, size),
