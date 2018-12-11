@@ -33,20 +33,31 @@ class linear_autoencoder_gpu(nn.Module):
 
         self.encoder = nn.Sequential(
             #nn.Linear(size, size),
-            Unflatten(),
-            nn.Conv2d(3, 3, kernel_size=1, stride=1),
-            Flatten(),
+            #Unflatten(),
+            #nn.Conv2d(3, 3, kernel_size=1, stride=1),
+            #Flatten(),
             #nn.BatchNorm1d(size),
             #nn.ReLU(),
-            nn.Linear(size, int(size*10*reduction)),
-            nn.Linear(int(size*10*reduction), int(size*reduction)),
+            nn.Linear(size, int(size*.5)),
+            nn.Relu(),
+            nn.Linear(int(size*.5), int(size*.25))
+            nn.ReLU(),
+            nn.Linear(int(size*.25), int(size*.125))
+            nn.ReLU(),
+            #nn.Linear(int(size*10*reduction), int(size*reduction)),
             #nn.Tanh(),
             #nn.Linear(int(size*reduction),int(size*reduction))
 
         )
         self.decoder = nn.Sequential(
-            nn.Linear(int(size*reduction), int(size*10*reduction)),
-            nn.Linear(int(size*10*reduction), size),
+            #nn.Linear(int(size*reduction), int(size*10*reduction)),
+            #nn.Linear(int(size*10*reduction), size),
+            nn.Linear(int(size*.125), int(size*.25)),
+            nn.Relu(),
+            nn.Linear(int(size*.25), int(size*.5))
+            nn.ReLU(),
+            nn.Linear(int(size*.5), size)
+            nn.Sigmoid(),
 
             #nn.Linear(int(size*reduction), size),
             #nn.BatchNorm1d(int(size)),
