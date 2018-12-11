@@ -113,7 +113,7 @@ if(run_auto):
     model = linear_autoencoder_gpu(X.shape[1], 0.01)
 
     model.cuda()
-    model.train(X, epochs=10000)
+    model.train(X, epochs=2000)
 
     #print(type(model))
     #print(type(X))
