@@ -35,6 +35,8 @@ class linear_autoencoder_gpu(nn.Module):
             #nn.Linear(size, size),
             Unflatten(),
             nn.Conv2d(3, 3, kernel_size=2, stride=2),
+            nn.Conv2d(3, 3, kernel_size=2, stride=2),
+            nn.Conv2d(3, 3, kernel_size=2, stride=2),
             Flatten(),
             #nn.BatchNorm1d(size),
             #nn.ReLU(),
@@ -58,6 +60,8 @@ class linear_autoencoder_gpu(nn.Module):
             #nn.BatchNorm1d(int(size)),
             #nn.ReLU(),
             Unflatten(),
+            nn.ConvTranspose2d(3, 3, kernel_size=2, stride=2),
+            nn.ConvTranspose2d(3, 3, kernel_size=7, stride=2),
             nn.ConvTranspose2d(3, 3, kernel_size=2, stride=2),
             Flatten(),
             #nn.ReLU(),
@@ -84,11 +88,11 @@ class linear_autoencoder_gpu(nn.Module):
         X = torch.from_numpy(X).float()
         train_loader = Data.DataLoader(dataset = X, batch_size = 64, shuffle = True)
 
-        learning_rate = 1e-2
+        learning_rate = 1e-3
 
 
         # define optimizer
-        optimizer = optim.Adam(self.parameters(), lr=learning_rate, weight_decay=0)
+        optimizer = optim.Adam(self.parameters(), lr=learning_rate, weight_decay=0.9)
         loss_fn = nn.MSELoss()
 
         for e in range(epochs):
