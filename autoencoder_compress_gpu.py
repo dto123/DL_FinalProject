@@ -108,11 +108,11 @@ class linear_autoencoder_gpu(nn.Module):
         X = torch.from_numpy(X).float()
         train_loader = Data.DataLoader(dataset = X, batch_size = 64, shuffle = True)
 
-        learning_rate = 1e-3
+        learning_rate = 5e-2
 
 
         # define optimizer
-        optimizer = optim.Adam(self.parameters(), lr=learning_rate, weight_decay=0.9)
+        optimizer = optim.Adam(self.parameters(), lr=learning_rate, weight_decay=0)
         loss_fn = nn.MSELoss()
 
         for e in range(epochs):
